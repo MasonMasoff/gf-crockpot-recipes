@@ -14,7 +14,7 @@ Open `index.html` in a browser. There's no build step.
 
 1. Push this folder to a GitHub repo, with the files at the repo root.
 2. Go to **Settings → Pages → Build and deployment → Deploy from a branch → `main` / root**.
-3. The site will be live at `https://<username>.github.io/<repo>/`.
+3. The site will be live at `https://<username>.github.io/<repo>/`. [site](https://masonmasoff.github.io/gf-crockpot-recipes/)
 
 ## Adding a new recipe (with Claude)
 
