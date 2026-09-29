@@ -18,7 +18,7 @@ Open `index.html` in a browser. There's no build step.
 
 ## Adding a new recipe (with Claude)
 
-Find any recipe online, even one that isn't gluten free, then open Claude Code in this folder and say something like:
+Find any recipe online, even one that isn't gluten free, then open Claude Code in this folder and run `/add-recipe <URL>` (or say the same in plain words):
 
 > Add this recipe to the GF pot dinners site: <paste URL or the recipe text>
 
