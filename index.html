@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gluten-Free Pot Dinners</title>
+  <meta name="description" content="14 celiac-safe Instant Pot and slow cooker dinners, scaled for 2 people plus leftovers, with a combined shopping list.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow">Instant Pot · Slow Cooker · Celiac-safe</p>
+      <h1>Gluten-Free Pot Dinners</h1>
+      <p class="lede">14 dinners in comfort, Italian, Mexican and Asian styles. Each one makes <strong>4 servings: dinner for two, plus leftovers</strong> for the next day. Every recipe has steps for both the Instant Pot and the slow cooker, and lists the ingredients that need a gluten-free label check.</p>
+    </div>
+  </header>
+
+  <nav class="topnav" aria-label="Sections">
+    <div class="wrap topnav-inner">
+      <a href="#recipes">Recipes</a>
+      <a href="#shopping">Shopping list <span id="nav-count" class="pill" hidden></span></a>
+      <a href="#gf-rules">GF kitchen rules</a>
+    </div>
+  </nav>
+
+  <main class="wrap">
+    <section id="recipes" aria-labelledby="recipes-h">
+      <div class="section-head">
+        <h2 id="recipes-h">Recipes</h2>
+        <div class="filters" role="group" aria-label="Filter by cuisine" id="filters"></div>
+      </div>
+      <p class="hint">Tick <strong>“Add to list”</strong> on the recipes you're making this week to build a combined shopping list.</p>
+      <div class="card-grid" id="card-grid"></div>
+      <div id="recipe-list"></div>
+    </section>
+
+    <section id="shopping" aria-labelledby="shopping-h">
+      <div class="section-head">
+        <h2 id="shopping-h">Shopping list</h2>
+        <div class="actions">
+          <button type="button" class="btn" id="copy-list">Copy list</button>
+          <button type="button" class="btn" id="print-list">Print</button>
+          <button type="button" class="btn ghost" id="clear-list">Clear</button>
+        </div>
+      </div>
+      <div id="shopping-body"></div>
+    </section>
+
+    <section id="gf-rules" aria-labelledby="gf-h">
+      <h2 id="gf-h">Gluten-free kitchen rules</h2>
+      <div class="rules">
+        <article class="rule-card">
+          <h3>Read every label, every time</h3>
+          <p>Formulas change without notice. Look for <strong>“Certified Gluten-Free”</strong> (GFCO, &lt;10 ppm) or a “gluten-free” claim (FDA, &lt;20 ppm). A “wheat-free” claim is <em>not</em> the same thing, because barley and rye also contain gluten.</p>
+        </article>
+        <article class="rule-card">
+          <h3>Hidden-gluten watch list</h3>
+          <ul>
+            <li>Soy sauce (use GF tamari), teriyaki, hoisin</li>
+            <li>Broth, stock, bouillon</li>
+            <li>Sausage, marinated or pre-seasoned meats</li>
+            <li>Spice blends, taco/chili seasoning packets</li>
+            <li>BBQ sauce, marinades, Worcestershire (non-US)</li>
+            <li>Malt vinegar, beer</li>
+            <li>Cream-of-X soups, gravy mixes, enchilada sauce</li>
+            <li>Flavored rice mixes, oats (unless GF-certified)</li>
+            <li>Corn tortillas, cornmeal/polenta (cross-contact)</li>
+            <li>Some curry pastes and fish sauces</li>
+          </ul>
+        </article>
+        <article class="rule-card">
+          <h3>Stop cross-contact</h3>
+          <ul>
+            <li>Wash the colander well, or keep a GF-only one. Pasta starch clings to it.</li>
+            <li>Keep a separate toaster, or use toaster bags.</li>
+            <li>Replace scratched wooden spoons and cutting boards, or keep GF-only ones.</li>
+            <li>Squeeze-bottle condiments beat jars that knives dip into.</li>
+            <li>Cook GF pasta in fresh water in a clean pot.</li>
+            <li>Thicken with <strong>cornstarch</strong>, never all-purpose flour.</li>
+            <li>Wash the Instant Pot lid, sealing ring and float valve after any non-GF use.</li>
+          </ul>
+        </article>
+        <article class="rule-card">
+          <h3>Big Instant Pot + small batch</h3>
+          <ul>
+            <li>These recipes are sized at 4 servings partly so a large pot has enough in it. Halving them in a 6–8 qt pot risks a <strong>Burn</strong> error.</li>
+            <li>Pressure needs thin liquid: about 1–1.5 cups for a 6 qt, up to 2 cups for an 8 qt (check your manual). If yours is an 8 qt and it won't seal, add ½ cup broth.</li>
+            <li>Always <strong>deglaze</strong> after sautéing: scrape every browned bit off the bottom.</li>
+            <li>Layer thick foods (tomatoes, BBQ sauce, coconut milk) <strong>on top</strong> and don't stir. Add cream and cornstarch <strong>after</strong> pressure cooking.</li>
+            <li>“Burn” notice: cancel, release, scrape the bottom, add ½ cup water, and restart.</li>
+            <li>Total times include about 10–15 min to come up to pressure.</li>
+          </ul>
+        </article>
+        <article class="rule-card">
+          <h3>Big slow cooker + small batch</h3>
+          <ul>
+            <li>A half-empty large crock runs hotter and cooks faster, so start checking at the <strong>shortest</strong> time listed.</li>
+            <li>Keep the lid on. Each peek adds about 15–20 min.</li>
+            <li>Chicken is done at 165 °F. Pork shoulder and chuck roast need to go well past done (~200 °F) to shred.</li>
+          </ul>
+        </article>
+        <article class="rule-card">
+          <h3>Leftovers</h3>
+          <ul>
+            <li>Refrigerate within 2 hours and eat within 3–4 days.</li>
+            <li>Freeze well: chili, pulled pork, carnitas, tortilla soup, pot roast.</li>
+            <li>Don't freeze well: cream-and-potato soups (they get grainy).</li>
+          </ul>
+        </article>
+      </div>
+      <p class="fine">Brand mentions are examples that were labeled gluten free at the time of writing. Always confirm on the package you buy.</p>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <a href="#top">Back to top ↑</a>
+  </footer>
+
+  <noscript><p class="wrap">This page needs JavaScript to show the recipes.</p></noscript>
+  <script src="recipes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
