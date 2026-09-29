@@ -18,7 +18,7 @@ Open `index.html` in a browser. There's no build step.
 
 ## Adding a new recipe (with Claude)
 
-Find any recipe online, even one that isn't gluten free, then open Claude Code in this folder and say something like:
+Find any recipe online, even one that isn't gluten free, then open Claude Code in this folder and run `/add-recipe <URL>` (or say the same in plain words):
 
 > Add this recipe to the GF pot dinners site: <paste URL or the recipe text>
 
@@ -29,6 +29,8 @@ Claude will translate it into the house format:
 3. **Write both methods** (Instant Pot and slow cooker), adjusting pressure time if the cut size or amount changed.
 4. **Reuse existing ingredient names** so the shopping list merges correctly.
 5. **Add the `source` link** plus a note on what changed from the original.
+
+The full process and swap table are in `CLAUDE.md`. After any change, run `node check.js`. It fails on gluten-containing ingredients and warns on label-dependent ones that aren't flagged `gf: true`.
 
 Handy extras you can mention: "make it spicier", "no Instant Pot version needed", "it's a side dish".
 
@@ -42,5 +44,7 @@ All recipe content is in `recipes.js`. Each ingredient's `n` (name) + `u` (unit)
 | --- | --- |
 | `index.html` | Page shell + GF kitchen rules |
 | `recipes.js` | Recipe data |
+| `check.js` | GF and format linter (`node check.js`) |
+| `CLAUDE.md` | Recipe-adding process and GF audit rules for Claude |
 | `app.js` | Rendering, method tabs, filters, shopping list |
 | `styles.css` | Styles (light/dark, mobile, print) |
