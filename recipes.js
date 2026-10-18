@@ -245,6 +245,60 @@ const RECIPES = [
     leftovers: "Freezes very well. You can also serve day two over a baked potato.",
   },
 
+  {
+    id: "chicken-noodle-soup",
+    source: { name: "Jo Cooks", url: "https://www.jocooks.com/recipes/instant-pot-chicken-noodle-soup/", note: "Same method and timing (7 min high pressure, 10 min natural release, shred, then noodles). Theirs uses <strong>egg noodles (wheat)</strong>, swapped here for GF pasta cooked separately. Theirs makes about 8 servings with 8 cups of liquid; ours is scaled to 4 with 6." },
+    title: "Chicken Noodle Soup",
+    cuisine: "Comfort",
+    blurb: "Classic bone-in chicken soup with carrots, celery and herbs. The GF pasta is cooked separately so it never turns to mush.",
+    best: "Either",
+    prep: "15 min",
+    ipTotal: "~50 min",
+    scTotal: "6–7 hr on low",
+    gf: [
+      "<strong>Egg noodles contain wheat.</strong> Use GF pasta (corn/rice blend holds up best), cooked in its own clean pot with fresh water.",
+      "Chicken broth and bouillon: both must be labeled GF. Bouillon cubes and powders often contain wheat.",
+      "Drain the pasta in a well-washed colander (or a GF-only one).",
+    ],
+    ingredients: [
+      { title: "", items: [
+        { q: 2, u: "tbsp", n: "butter", a: D },
+        { q: 1, u: "", n: "yellow onion", prep: "chopped", a: P },
+        { q: 2, u: "", n: "carrot", prep: "sliced", a: P },
+        { q: 2, u: "", n: "celery stalk", prep: "sliced", a: P },
+        { q: 1, u: "tsp", n: "dried thyme", a: SP },
+        { q: 1, u: "tsp", n: "dried oregano", a: SP },
+        { q: 1, u: "", n: "chicken bouillon cube", pl: "chicken bouillon cubes", gf: true, a: C },
+        { q: 4, u: "cup", n: "chicken broth", gf: true, a: C },
+        { q: 2, u: "lb", n: "bone-in skin-on chicken thighs", prep: "about 4, or a mix with breast", a: M },
+        { q: 1, u: "tsp", n: "kosher salt", prep: "plus more at the end", a: ST },
+        { q: 1, u: "tsp", n: "black pepper", a: ST },
+        { q: null, u: "", n: "fresh parsley", prep: "chopped", a: P },
+      ]},
+      { title: "Noodles", items: [
+        { q: 6, u: "oz", n: "GF pasta (penne or rotini)", prep: "or any small GF shape", gf: true, a: G },
+      ]},
+    ],
+    ip: [
+      "Set to Sauté. Melt the butter and cook the onion, carrot and celery 3 min until the onion is soft.",
+      "Stir in the thyme, oregano, bouillon, salt and pepper.",
+      "Pour in the broth and <strong>2 cups water</strong>, scrape the bottom clean, and add the chicken.",
+      "Seal and cook on <strong>High Pressure 7 min</strong> (Soup setting works too), then <strong>natural release 10 min</strong>.",
+      "Remove the chicken, pull off the skin and bones, and shred the meat. Return it to the pot.",
+      "Meanwhile, cook the GF pasta in a separate pot of salted water until just tender, then drain. Add it to the bowls, not the pot. <em>GF pasta turns soft and cloudy if it sits in the soup.</em>",
+      "Taste and adjust the salt. Garnish with parsley.",
+    ],
+    sc: [
+      "Put the onion, carrot, celery, herbs, bouillon, salt and pepper in the slow cooker. Sautéing the vegetables in the butter first is optional.",
+      "Add the chicken, broth and <strong>2 cups water</strong>.",
+      "Cook on <strong>low 6–7 hr</strong> (or high 3–4 hr) until the chicken is falling off the bone.",
+      "Remove the chicken, discard the skin and bones, shred the meat, and return it to the pot.",
+      "Cook the GF pasta separately on the stove and add it to the bowls as above. Adjust the salt and garnish with parsley.",
+    ],
+    serve: "Ladle over the GF pasta. Add a green salad or GF crackers if you like.",
+    leftovers: "Store the pasta separately from the soup, or it soaks up the broth. The soup (without pasta) freezes well for up to 3 months.",
+  },
+
   // ───────────────────────────── ITALIAN ─────────────────────────────
   {
     id: "tuscan-chicken",
