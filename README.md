@@ -1,6 +1,6 @@
 # Gluten-Free Pot Dinners
 
-15 celiac-safe Instant Pot and slow cooker dinners (comfort, Italian, Mexican, Asian). Each one makes 4 servings: dinner for 2 plus a round of leftovers.
+14 celiac-safe Instant Pot and slow cooker dinners (comfort, Italian, Mexican, Asian). Each one makes 4 servings: dinner for 2 plus a round of leftovers.
 
 - Every recipe has **both** Instant Pot and slow cooker steps.
 - Every recipe has a **gluten-free checks** box, and ingredients that need a GF label are tagged.

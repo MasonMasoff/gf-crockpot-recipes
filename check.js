@@ -70,6 +70,7 @@ for (const r of GLUTEN_RECIPES) {
   for (const g of r.ingredients || []) for (const i of g.items) {
     if (!AISLES.includes(i.a)) err(r, `"${i.n}" has invalid aisle`);
     if (typeof i.q !== "number" && i.q !== null) err(r, `"${i.n}" bad quantity`);
+    if (GLUTEN.test(i.n) && !i.gluten) err(r, `"${i.n}" looks like gluten but has no gluten: true (needed for the shopping-list badge)`);
   }
 }
 
