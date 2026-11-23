@@ -816,3 +816,53 @@ const RECIPES = [
     leftovers: "It tastes even better on day two. Freezes OK, but the peppers soften.",
   },
 ];
+
+/*
+ * NOT GLUTEN FREE. Recipes here contain gluten on purpose (only when the user explicitly asks for one).
+ * They render in their own "Contains gluten" section and never reach the shopping list or cuisine filters.
+ * Same ingredient fields as RECIPES, plus:
+ *   contains  list of the gluten-containing items and why (shown in the warning box)
+ *   steps     single method (no-cook or stovetop), instead of ip/sc
+ *   total     total time
+ */
+const GLUTEN_RECIPES = [
+  {
+    id: "tamago-sando",
+    source: { name: "Just One Cookbook", url: "https://www.justonecookbook.com/japanese-egg-sandwich-tamago-sando/", note: "Theirs makes 2 servings (3 eggs, 4 slices) with the same 12 min eggs and 5 min press. Ours is doubled to 4. Keep half the filling separate for leftovers." },
+    title: "Japanese Egg Sandwich (Tamago Sando)",
+    cuisine: "Japanese",
+    blurb: "Soft, creamy egg salad on buttered milk bread, crusts cut off, the way konbini (convenience stores) in Japan make it.",
+    prep: "15 min",
+    total: "~35 min",
+    contains: [
+      "<strong>Shokupan (Japanese milk bread) is made with wheat flour.</strong> Not safe for celiac.",
+      "Kewpie mayonnaise is not a gluten source, but check the label of whatever mayo you use.",
+      "A GF version would need soft GF sandwich bread, and this site hasn't tested one.",
+    ],
+    ingredients: [
+      { title: "Egg filling", items: [
+        { q: 6, u: "", n: "large egg", pl: "large eggs", a: D },
+        { q: 0.25, u: "cup", n: "Kewpie mayonnaise", prep: "or regular mayo", a: S },
+        { q: 4, u: "tsp", n: "milk", a: D },
+        { q: 0.5, u: "tsp", n: "sugar", opt: true, a: SP },
+        { q: 0.5, u: "tsp", n: "kosher salt", prep: "Diamond Crystal; use half as much table salt", a: ST },
+        { q: 0.25, u: "tsp", n: "black pepper", a: ST },
+      ]},
+      { title: "Assembly", items: [
+        { q: 8, u: "slice", n: "shokupan (Japanese milk bread)", prep: "from an 8-slice sandwich loaf", a: B },
+        { q: null, u: "", n: "salted butter", prep: "softened", a: D },
+      ]},
+    ],
+    steps: [
+      "Put the eggs in a saucepan, cover with 1 inch of water, and bring to a boil over medium heat. Boil <strong>12 min</strong>.",
+      "Move the eggs to iced water and cool completely, then peel.",
+      "Mash the eggs with a fork into small, even pieces. Stir in the sugar, salt, pepper and milk, then the mayo. Taste and adjust.",
+      "<strong>Leftovers:</strong> scoop half the filling into an airtight container and refrigerate it separately.",
+      "Butter all the slices you're using. The butter keeps the bread from going soggy. Spread filling on half the slices and top with the rest, butter side down.",
+      "Press the sandwiches between two plates and rest <strong>5 min</strong>.",
+      "Trim the crusts with a sharp knife and cut each sandwich in half.",
+    ],
+    serve: "Serve 2 sandwiches (4 halves) per dinner for two, with a small salad or pickles.",
+    leftovers: "Eat the reserved filling within 2 days. Assemble fresh sandwiches rather than storing them, because the bread goes soggy.",
+  },
+];
