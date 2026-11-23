@@ -165,6 +165,53 @@
       </article>`).join("");
   }
 
+  // Gluten recipes: separate section, no "Add to list", no cuisine filter (no data-cuisine attr).
+  function renderGlutenRecipes() {
+    const el = document.getElementById("gluten-recipes");
+    if (typeof GLUTEN_RECIPES === "undefined" || !GLUTEN_RECIPES.length) {
+      document.getElementById("gluten").hidden = true;
+      return;
+    }
+    el.innerHTML = GLUTEN_RECIPES.map((r) => `
+      <article class="recipe" id="${r.id}">
+        <header class="recipe-head">
+          <div>
+            <span class="tag tag-japanese">Contains gluten</span>
+            <h3>${esc(r.title)}</h3>
+            <p class="blurb">${esc(r.blurb)}</p>
+          </div>
+        </header>
+        <dl class="facts">
+          <div><dt>Serves</dt><dd>4 (2 dinners for 2)</dd></div>
+          <div><dt>Active prep</dt><dd>${esc(r.prep)}</dd></div>
+          <div><dt>Total</dt><dd>${esc(r.total)}</dd></div>
+        </dl>
+        <aside class="gf-box gluten-box" aria-label="Gluten warning">
+          <h4><span aria-hidden="true">⚠</span> Contains gluten</h4>
+          <ul>${r.contains.map((g) => `<li>${g}</li>`).join("")}</ul>
+        </aside>
+        <div class="recipe-body">
+          <div class="ingredients">
+            <h4>Ingredients</h4>
+            ${r.ingredients.map((g) => `
+              ${g.title ? `<h5>${esc(g.title)}</h5>` : ""}
+              <ul>${g.items.map((ing) => `
+                <li><span>${esc(ingText(ing))}${ing.prep ? `<span class="prep">, ${esc(ing.prep)}</span>` : ""}${ing.opt ? ' <span class="prep">(optional)</span>' : ""}${ing.q == null && !ing.prep ? ' <span class="prep">(as desired)</span>' : ""}</span></li>`).join("")}
+              </ul>`).join("")}
+          </div>
+          <div class="method">
+            <ol class="steps">${r.steps.map((s) => `<li>${s}</li>`).join("")}</ol>
+            <div class="notes">
+              <p><strong>Serve:</strong> ${esc(r.serve)}</p>
+              <p><strong>Leftovers:</strong> ${esc(r.leftovers)}</p>
+            </div>
+            ${r.source ? `<p class="source"><strong>Checked against:</strong> <a href="${esc(r.source.url)}" target="_blank" rel="noopener">${esc(r.source.name)}</a>. ${r.source.note}</p>` : ""}
+          </div>
+        </div>
+        <a class="to-top" href="#gluten">↑ Contains gluten</a>
+      </article>`).join("");
+  }
+
   function setMethod(m) {
     state.method = m;
     store.set("gf.method", m);
@@ -313,5 +360,6 @@
   renderFilters();
   renderCards();
   renderRecipes();
+  renderGlutenRecipes();
   renderShopping();
 })();

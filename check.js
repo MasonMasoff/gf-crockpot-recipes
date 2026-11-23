@@ -6,8 +6,8 @@ const vm = require("vm");
 
 const ctx = {};
 vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(__dirname + "/recipes.js", "utf8") + "\n;this.RECIPES=RECIPES;this.AISLES=AISLES;", ctx);
-const { RECIPES, AISLES } = ctx;
+vm.runInContext(fs.readFileSync(__dirname + "/recipes.js", "utf8") + "\n;this.RECIPES=RECIPES;this.AISLES=AISLES;this.GLUTEN_RECIPES=typeof GLUTEN_RECIPES===\"undefined\"?[]:GLUTEN_RECIPES;", ctx);
+const { RECIPES, AISLES, GLUTEN_RECIPES } = ctx;
 
 // Gluten-containing ingredients. Always an error unless the name says gluten-free/GF.
 const GLUTEN = /\b(wheat|flour|bread ?crumbs?|panko|barley|rye|malt|beer|ale|lager|stout|couscous|orzo|farro|bulgur|semolina|seitan|spelt|kamut|udon|ramen|noodles?|pasta|spaghetti|penne|macaroni|lasagna|bun|pita|naan|crouton|cracker|biscuit|roux|breading|flour tortilla)s?\b/i;
@@ -59,5 +59,19 @@ for (const r of RECIPES) {
   }
 }
 
-console.log(`\n${RECIPES.length} recipes checked: ${errors} error(s), ${warns} warning(s).`);
+// Gluten recipes are expected to contain gluten, but must be clearly marked and stay out of RECIPES.
+for (const r of GLUTEN_RECIPES) {
+  if (seenIds.has(r.id)) err(r, "id also used in RECIPES");
+  seenIds.add(r.id);
+  for (const f of ["title", "cuisine", "blurb", "serve", "leftovers"]) if (!r[f]) err(r, `missing ${f}`);
+  if (!r.source || !r.source.url || !r.source.note) warn(r, "missing source {name,url,note}");
+  if (!Array.isArray(r.contains) || r.contains.length === 0) err(r, "missing `contains` list of gluten ingredients");
+  if (!r.steps || !r.steps.length) err(r, "missing steps");
+  for (const g of r.ingredients || []) for (const i of g.items) {
+    if (!AISLES.includes(i.a)) err(r, `"${i.n}" has invalid aisle`);
+    if (typeof i.q !== "number" && i.q !== null) err(r, `"${i.n}" bad quantity`);
+  }
+}
+
+console.log(`\n${RECIPES.length} recipes checked: ${errors} error(s), ${warns} warning(s). ${GLUTEN_RECIPES.length} gluten recipe(s) checked separately.`);
 process.exit(errors ? 1 : 0);

@@ -14,6 +14,8 @@
   --italian: #2f7a4f;
   --mexican: #b0452f;
   --asian: #6a4aa0;
+  --danger: #b3261e;
+  --danger-bg: #fdecea;
   --shadow: 0 1px 2px rgba(60, 40, 20, .06), 0 4px 16px rgba(60, 40, 20, .05);
   --radius: 14px;
   color-scheme: light;
@@ -36,6 +38,8 @@
     --italian: #7cc79a;
     --mexican: #ee8a72;
     --asian: #b79cf0;
+    --danger: #f2877f;
+    --danger-bg: #3a1f1d;
     --shadow: 0 1px 2px rgba(0, 0, 0, .3);
     color-scheme: dark;
   }
@@ -44,7 +48,7 @@
   --bg: #1a1714; --surface: #24201c; --surface-2: #2d2823; --text: #efe8df; --muted: #a99e92;
   --border: #3a332c; --accent: #e58a5e; --accent-soft: #3a2a20; --warn-bg: #2f2615;
   --warn-border: #8c6a22; --warn-text: #f1d48f; --comfort: #d7a36d; --italian: #7cc79a;
-  --mexican: #ee8a72; --asian: #b79cf0; --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark;
+  --mexican: #ee8a72; --asian: #b79cf0; --danger: #f2877f; --danger-bg: #3a1f1d; --shadow: 0 1px 2px rgba(0, 0, 0, .3); color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -97,6 +101,7 @@ section { padding: 40px 0 16px; }
 .tag-italian { color: var(--italian); }
 .tag-mexican { color: var(--mexican); }
 .tag-asian { color: var(--asian); }
+.tag-japanese { color: var(--danger); }
 
 /* cards */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-bottom: 40px; }
@@ -126,6 +131,9 @@ section { padding: 40px 0 16px; }
 .gf-box h4 { margin: 0 0 6px; font-size: 14px; text-transform: uppercase; letter-spacing: .06em; }
 .gf-box ul { margin: 0; padding-left: 18px; font-size: 15px; }
 .gf-box li + li { margin-top: 4px; }
+.gf-box.gluten-box { background: var(--danger-bg); border-color: var(--danger); color: var(--text); }
+.gluten-banner { background: var(--danger-bg); border: 1px solid var(--danger); border-left-width: 4px; border-radius: 10px; padding: 12px 16px; margin: 0 0 20px; }
+#gluten-h { font-size: 30px; }
 .gf-badge { display: inline-block; font-size: 10.5px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--warn-text); background: var(--warn-bg); border: 1px solid var(--warn-border); border-radius: 6px; padding: 0 6px; line-height: 18px; white-space: nowrap; }
 
 .recipe-body { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 32px; }
