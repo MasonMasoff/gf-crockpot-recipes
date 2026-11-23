@@ -58,5 +58,5 @@ When the user shares a non-GF recipe, lead with a short verdict: **GF as-is / GF
 
 - Don't invent sources. If the recipe came from the user's text with no URL, set `source` note accordingly.
 - Don't remove or weaken existing `gf` warnings.
-- Non-GF recipes go only in `GLUTEN_RECIPES` (recipes.js), and only when the user explicitly asks for one. Never put them in `RECIPES`, the cuisine filters, the counts, or the shopping list. Each needs a `contains` list.
+- Non-GF recipes go only in `GLUTEN_RECIPES` (recipes.js), and only when the user explicitly asks for one. Never put them in `RECIPES`, the cuisine filters or the counts. They can go on the shopping list, so mark every gluten ingredient `gluten: true` (it gets a red badge). Each recipe needs a `contains` list.
 - Brand claims (e.g. "Lea & Perrins US is GF") must be ones you're confident about; otherwise say "look for a GF label".

@@ -762,65 +762,14 @@ const RECIPES = [
     serve: "Serve over rice with steamed broccoli or green beans.",
     leftovers: "A good next-day lunch bowl. Add a splash of water when reheating.",
   },
-
-  {
-    id: "thai-red-curry",
-    source: { name: "Paint the Kitchen Red", url: "https://www.paintthekitchenred.com/instant-pot-thai-red-curry/", note: "Theirs: 4 min + quick release with thinly sliced chicken, veg added after. Our 1-inch pieces get 5 min + a short natural release." },
-    title: "Thai Red Curry Chicken",
-    cuisine: "Asian",
-    blurb: "Coconut red curry with chicken, bell pepper and peas. Mild with 2 tbsp of paste, medium with 3.",
-    best: "Instant Pot",
-    prep: "15 min",
-    ipTotal: "~30 min",
-    scTotal: "4 hr on low",
-    gf: [
-      "Red curry paste: Thai Kitchen is labeled GF and on the mild side. Check other brands.",
-      "Fish sauce: some brands add wheat or hydrolyzed wheat protein. Red Boat (anchovy + salt) is GF, or use GF tamari.",
-      "Chicken broth: labeled GF.",
-    ],
-    ingredients: [
-      { title: "", items: [
-        { q: 1.5, u: "lb", n: "boneless skinless chicken thighs", prep: "1-inch pieces", a: M },
-        { q: 1, u: "tbsp", n: "neutral oil", a: ST },
-        { q: 1, u: "", n: "yellow onion", prep: "sliced", a: P },
-        { q: 3, u: "clove", n: "garlic", prep: "minced", a: P },
-        { q: 1, u: "tbsp", n: "fresh ginger", prep: "grated", a: P },
-        { q: 2, u: "tbsp", n: "red curry paste", prep: "3 for medium heat", gf: true, a: S },
-        { q: 0.5, u: "cup", n: "chicken broth", gf: true, a: C },
-        { q: 1, u: "can", sz: "13.5 oz", n: "full-fat coconut milk", a: C },
-        { q: 1, u: "tbsp", n: "fish sauce", gf: true, a: S },
-        { q: 1, u: "tbsp", n: "brown sugar", a: SP },
-        { q: 1, u: "", n: "red bell pepper", prep: "sliced", a: P },
-        { q: 1, u: "cup", n: "frozen peas", a: F },
-        { q: 1, u: "", n: "lime", a: P },
-        { q: null, u: "", n: "fresh basil or cilantro", a: P },
-      ]},
-      { title: "To serve", items: [
-        { q: 1.5, u: "cup", n: "jasmine rice", a: G },
-      ]},
-    ],
-    ip: [
-      "Set to Sauté. Add oil and cook the onion 3 min. Add the garlic, ginger and curry paste and stir for 1 min until fragrant.",
-      "Pour in the broth and <strong>scrape the bottom clean</strong>. This matters most with coconut milk.",
-      "Add the chicken, fish sauce and brown sugar. Pour the coconut milk on top and <strong>do not stir</strong>.",
-      "Seal and cook on <strong>High Pressure 5 min</strong>, then <strong>natural release 5 min</strong>.",
-      "Set to Sauté. Add the bell pepper and peas and simmer 3–4 min. Finish with lime juice and herbs.",
-    ],
-    sc: [
-      "Optional: fry the curry paste, garlic and ginger in a little oil in a skillet for 1 min to bloom the flavor.",
-      "Add everything except the bell pepper, peas, lime and herbs to the slow cooker.",
-      "Cook on <strong>low 4 hr</strong> (or high 2 hr).",
-      "Add the bell pepper and peas for the last 30 min, then the lime and herbs.",
-    ],
-    serve: "Serve over jasmine rice.",
-    leftovers: "It tastes even better on day two. Freezes OK, but the peppers soften.",
-  },
 ];
 
 /*
  * NOT GLUTEN FREE. Recipes here contain gluten on purpose (only when the user explicitly asks for one).
- * They render in their own "Contains gluten" section and never reach the shopping list or cuisine filters.
+ * They render in their own "Contains gluten" section, outside the cuisine filters and the GF counts.
+ * They can be added to the shopping list; ingredients with gluten: true are badged there so they are never mistaken for GF.
  * Same ingredient fields as RECIPES, plus:
+ *   gluten    (ingredient) true = contains gluten; shown with a red badge on the shopping list
  *   contains  list of the gluten-containing items and why (shown in the warning box)
  *   steps     single method (no-cook or stovetop), instead of ip/sc
  *   total     total time
@@ -849,7 +798,7 @@ const GLUTEN_RECIPES = [
         { q: 0.25, u: "tsp", n: "black pepper", a: ST },
       ]},
       { title: "Assembly", items: [
-        { q: 8, u: "slice", n: "shokupan (Japanese milk bread)", prep: "from an 8-slice sandwich loaf", a: B },
+        { q: 8, u: "slice", n: "shokupan (Japanese milk bread)", prep: "from an 8-slice sandwich loaf", gluten: true, a: B },
         { q: null, u: "", n: "salted butter", prep: "softened", a: D },
       ]},
     ],

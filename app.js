@@ -180,6 +180,10 @@
             <h3>${esc(r.title)}</h3>
             <p class="blurb">${esc(r.blurb)}</p>
           </div>
+          <label class="add">
+            <input type="checkbox" data-select="${r.id}" ${state.selected.has(r.id) ? "checked" : ""}>
+            Add to list
+          </label>
         </header>
         <dl class="facts">
           <div><dt>Serves</dt><dd>4 (2 dinners for 2)</dd></div>
@@ -196,7 +200,10 @@
             ${r.ingredients.map((g) => `
               ${g.title ? `<h5>${esc(g.title)}</h5>` : ""}
               <ul>${g.items.map((ing) => `
-                <li><span>${esc(ingText(ing))}${ing.prep ? `<span class="prep">, ${esc(ing.prep)}</span>` : ""}${ing.opt ? ' <span class="prep">(optional)</span>' : ""}${ing.q == null && !ing.prep ? ' <span class="prep">(as desired)</span>' : ""}</span></li>`).join("")}
+                <li>
+                  <span>${esc(ingText(ing))}${ing.prep ? `<span class="prep">, ${esc(ing.prep)}</span>` : ""}${ing.opt ? ' <span class="prep">(optional)</span>' : ""}${ing.q == null && !ing.prep ? ' <span class="prep">(as desired)</span>' : ""}</span>
+                  ${ing.gluten ? '<span class="gluten-badge" title="Contains gluten">Gluten</span>' : ""}
+                </li>`).join("")}
               </ul>`).join("")}
           </div>
           <div class="method">
@@ -220,9 +227,11 @@
   }
 
   // ---------- shopping list ----------
+  const glutenRecipes = () => (typeof GLUTEN_RECIPES === "undefined" ? [] : GLUTEN_RECIPES);
+  const allRecipes = () => [...RECIPES, ...glutenRecipes()];
   function buildList() {
     const items = new Map();
-    for (const r of RECIPES) {
+    for (const r of allRecipes()) {
       if (!state.selected.has(r.id)) continue;
       for (const g of r.ingredients) for (const ing of g.items) {
         const key = `${ing.n}|${ing.u}|${ing.sz || ""}`;
@@ -233,6 +242,7 @@
         }
         if (ing.q == null) it.anyNull = true; else it.q += ing.q;
         it.gf = it.gf || !!ing.gf;
+        it.gluten = it.gluten || !!ing.gluten;
         it.opt = it.opt && !!ing.opt;
         if (!it.from.includes(r.title)) it.from.push(r.title);
       }
@@ -265,10 +275,11 @@
     }
 
     const byAisle = buildList();
-    const chosen = RECIPES.filter((r) => state.selected.has(r.id));
+    const chosen = allRecipes().filter((r) => state.selected.has(r.id));
+    const hasGluten = chosen.some((r) => glutenRecipes().includes(r));
     body.innerHTML = `
-      <p class="chosen">For <strong>${count}</strong> recipe${count > 1 ? "s" : ""}: ${chosen.map((r) => `<a href="#${r.id}">${esc(r.title)}</a>`).join(" · ")}</p>
-      <p class="legend"><span class="gf-badge">GF label</span> means buy a version labeled gluten free.</p>
+      <p class="chosen">For <strong>${count}</strong> recipe${count > 1 ? "s" : ""}: ${chosen.map((r) => `<a href="#${r.id}">${esc(r.title)}</a>${glutenRecipes().includes(r) ? " (contains gluten)" : ""}`).join(" · ")}</p>
+      <p class="legend"><span class="gf-badge">GF label</span> means buy a version labeled gluten free.${hasGluten ? ' <span class="gluten-badge">Gluten</span> means the item contains gluten. Keep it away from GF food and prep surfaces.' : ""}</p>
       <div class="aisles">
         ${[...byAisle].filter(([, l]) => l.length).map(([aisle, list]) => `
           <div class="aisle ${aisle.startsWith("Staples") ? "staples" : ""}">
@@ -283,6 +294,7 @@
                     <span class="item-main">
                       <span>${esc(text)}${it.opt ? ' <span class="prep">(optional)</span>' : ""}</span>
                       ${it.gf ? '<span class="gf-badge">GF label</span>' : ""}
+                      ${it.gluten ? '<span class="gluten-badge">Gluten</span>' : ""}
                     </span>
                     <span class="item-sub">${hint ? `${esc(hint)} · ` : ""}${esc(it.from.join(", "))}</span>
                   </label>
@@ -294,13 +306,14 @@
   }
 
   function listAsText() {
-    const lines = ["GLUTEN-FREE SHOPPING LIST", ""];
+    const hasGluten = allRecipes().some((r) => state.selected.has(r.id) && glutenRecipes().includes(r));
+    const lines = [hasGluten ? "SHOPPING LIST (includes items with GLUTEN)" : "GLUTEN-FREE SHOPPING LIST", ""];
     for (const [aisle, list] of buildList()) {
       if (!list.length) continue;
       lines.push(aisle.toUpperCase());
       for (const it of list) {
         const { text, hint } = itemLine(it);
-        lines.push(`[ ] ${text}${it.gf ? " (GF LABEL)" : ""}${hint ? ` — ${hint}` : ""}`);
+        lines.push(`[ ] ${text}${it.gf ? " (GF LABEL)" : ""}${it.gluten ? " (CONTAINS GLUTEN)" : ""}${hint ? ` — ${hint}` : ""}`);
       }
       lines.push("");
     }
